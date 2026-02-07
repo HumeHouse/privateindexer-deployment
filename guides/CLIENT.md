@@ -164,7 +164,7 @@ The API was derived from the qBittorrent API and mocks all of the endpoints used
 5. Set the host to the name of your `privateindexer-client` container or a hostname that points to it (like via reverse
    proxy).
 6. Set the port to whatever port you've mapped to the webserver port, default is 8080 if using the example below
-7. Enter **any username** and the password is your assigned API key. This is the same as `API_KEY` in your environment
+7. The username is `privateindexer` and the password is your assigned API key. This is the same as `API_KEY` in your environment
    variables.
 8. Give the app a unique category like `radarr`/`sonarr` etc.
 9. You may want to click the gear at the bottom to show advanced settings and set the `Client Priority` to something
