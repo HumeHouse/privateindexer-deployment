@@ -217,4 +217,5 @@ Your server stats are displayed in the top right corner
 - UL: amount of data you've uploaded to peers in the swarm in total
 - S: number of torrents you are actively seeding to the swarm (all locations)
 - Ratio: same as the client ratio above, except this value is tracked by the server, not the client
-- Grabs: number of times **other users** have downloaded files that you have uploaded
+- Grabs: number of times you've pulled torrents from the swarm
+- Popularity: number of times other swarm users have pulled a torrent which was uploaded by you
