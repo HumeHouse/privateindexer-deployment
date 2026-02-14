@@ -71,6 +71,8 @@ Here’s an example setup:
 | `ALLOW_UTP_CONNECTIONS`     | `False`           | `BOOLEAN`           | Enable this to allow the client to connect to peers using uTP instead of TCP. This may result in lower transfer speeds.                                                      |
 | `MEMORY_LOG_INTERVAL`       | `0`               | `INTEGER` (seconds) | Set this to something >0 to display thread memory utilization in the console at a desired interval. Most commonly used for debugging at ~5 seconds.                          |
 | `TAG_SEARCH_RESULTS`        | `True`            | `BOOLEAN`           | Disable this to prevent server from tagging search results which contain your uploads with your user label. This is a privacy option to anonymize your uploads if preferred. |
+| `API_USERNAME`              | `privateindexer`  | `TEXT`              | Username used to authenticate with the API used by the `*arr` apps when adding a download client.                                                                            |
+| `API_PASSWORD`              | `privateindexer`  | `TEXT`              | Password used to authenticate with the API.                                                                                                                                  |
 | `TZ`                        | `America/Chicago` | `TEXT` (ISO 8601)   | Change this to your desired time zone. Check online for a list of ISO 8601 time zones.                                                                                       |
 | `UID`                       | `1000`            | `INTEGER` (user)    | User ID on the system to run the app as. Make sure this user can read and write to the `app data` and `DOWNLOADS_DIR` directories.                                           |
 | `GID`                       | `1000`            | `INTEGER` (group)   | Group ID on the system to run the app as. Make sure this group can read and write to the `app data` and `DOWNLOADS_DIR` directories.                                         |
@@ -164,8 +166,8 @@ The API was derived from the qBittorrent API and mocks all of the endpoints used
 5. Set the host to the name of your `privateindexer-client` container or a hostname that points to it (like via reverse
    proxy).
 6. Set the port to whatever port you've mapped to the webserver port, default is 8080 if using the example below
-7. The username is `privateindexer` and the password is your assigned API key. This is the same as `API_KEY` in your environment
-   variables.
+7. The username and password are both `privateindexer` by default. You can change these with the `API_USERNAME` and 
+   `API_PASSWORD` environment variables.
 8. Give the app a unique category like `radarr`/`sonarr` etc.
 9. You may want to click the gear at the bottom to show advanced settings and set the `Client Priority` to something
    `higher` than your default download client so it doesn't try to download random torrents
