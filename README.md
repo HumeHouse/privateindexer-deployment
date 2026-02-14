@@ -93,8 +93,8 @@ They should then follow the [privateindexer-client guide](guides/CLIENT.md) to c
 
 Each client will need the following information from you (the server operator):
 
-1. Your externally accessible `server` URL (the value of `EXTERNAL_SERVER_URL`)
-2. Your externally accessible `tracker` URL (the value of `EXTERNAL_TRACKER_URL`)
+1. Your externally accessible `server` URL - example: `https://indexer.humehouse.com` (same value as `EXTERNAL_SERVER_URL` on the server container)
+2. Your externally accessible `tracker` URL - example: `https://tracker.humehouse.com`
 3. Their unique API key (available in the server admin panel — see the bottom of the server guide)
 
 Once configured, the client will scan media, upload torrents to the server, and automatically announce to the tracker.

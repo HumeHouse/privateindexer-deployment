@@ -11,10 +11,7 @@ services:
       REDIS_HOST: privateindexer-redis
       MYSQL_HOST: privateindexer-mysql
       MYSQL_ROOT_PASSWORD: privateindexer
-
-      # distribute these URLs to your users to be used on the client
       EXTERNAL_SERVER_URL: https://indexer.humehouse.com
-      EXTERNAL_TRACKER_URL: https://tracker.humehouse.com
     volumes:
       - ./server/data:/app/data
       - ./server/logs:/app/logs

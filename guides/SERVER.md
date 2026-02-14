@@ -19,7 +19,6 @@ provide access to torrent files.
 | `MYSQL_HOST`           | MySQL server hostname for storing torrent metadata and maintaining user database.                                  | `privateindexer-mysql`          |
 | `MYSQL_ROOT_PASSWORD`  | Root password to use for setting up the schema and user on the MySQL server.                                       | `privateindexer`                |
 | `EXTERNAL_SERVER_URL`  | Externally accessible URL pointing to your server instance to respond to API requests and track uploaded torrents. | `https://indexer.humehouse.com` |
-| `EXTERNAL_TRACKER_URL` | Externally accessible URL pointing to your tracker instance to receive announcement requests.                      | `https://tracker.humehouse.com` |
 
 ### Optional Environment Variables
 
