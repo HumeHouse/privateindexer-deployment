@@ -12,7 +12,7 @@ It allows you and your friends to form your own private torrent swarm — where 
 
 PrivateIndexer is primarily built for users running their own media stacks (e.g., Plex, Jellyfin, Emby, and the *arr suite) who want efficient, automated sharing between peers.
 
-![PrivateIndexer stack image](privateindexer.png)
+![PrivateIndexer stack diagram](stack_diagram.png)
 
 ## How It Works
 
