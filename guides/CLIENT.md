@@ -16,20 +16,7 @@ statistics about your torrent client.
 
 ---
 
-## Quick Start Example (using Docker)
-
-### Use the [example docker-compose.yml](docker-compose.yml) and adjust paths and environment variables to match your setup.
-
-Here’s an example setup:
-
-- My movie files are stored in `/data/media/movies` on the host
-- My TV show files are stored in `/data/media/shows` on the host
-- My downloads are stored in `/data/privateindexer/downloads` on the host
-- My persistent data (torrents and database) for client is stored in `/humehouse/privateindexer` on the host
-
-### 1. Configure Environment Variables
-
-#### REQURIED VARIABLES
+### Required Environment Variables
 
 | Variable          | Description                                                                                                                       | Example                         |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
@@ -38,7 +25,10 @@ Here’s an example setup:
 | `INDEXER_API_URL` | URL pointing to your server operator's PrivateIndexer **Server** instance to respond to API requests and track uploaded torrents. | `https://indexer.humehouse.com` |
 | `TRACKER_API_URL` | URL pointing to your server operator's PrivateIndexer **Tracker** instance to receive announcement requests.                      | `https://tracker.humehouse.com` |
 
-#### *ARR APP VARIABLES (OPTIONAL, AT LEAST 1 REQUIRED)
+### App Variables
+
+> [!IMPORTANT]  
+> These are all optional, however you'll want at least one app setup for scanning.
 
 | Variable         | Description                                                                                             | Example                        |
 |------------------|---------------------------------------------------------------------------------------------------------|--------------------------------|
@@ -49,7 +39,7 @@ Here’s an example setup:
 | `LIDARR_URL`     | Same purpose as `RADARR_URL` but for Lidarr                                                             | `https://lidarr.humehouse.com` |
 | `LIDARR_API_KEY` | Your Lidarr API key, found under `Settings > General > Security`                                        |                                |
 
-#### OPTIONAL VARIABLES
+### Optional Environment Variables
 
 | Variable                    | Default Value     | Type                | Description                                                                                                                                                                  |
 |-----------------------------|-------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -79,12 +69,10 @@ Here’s an example setup:
 | `MAX_UNCHOKE_SLOTS`         | `-1` (Unlimited)  | `INTEGER`           | Number of simultaneous seeding (uploading) torrents which are allowed to be active at any given time. Set to -1 for unlimited slots.                                         |
 | `MAX_DOWNLOAD_SLOTS`        | `-1` (Unlimited)  | `INTEGER`           | Number of simultaneous leeching (downloading) torrents which are allowed to be active at any given time. Set to -1 for unlimited slots.                                      |
 
-### 2. Configure Volumes
+### Volumes
 
 > [!IMPORTANT]  
-> Make sure the `/app/data` and `DOWNLOADS_DIR` directories are readable and writable by your configured `UID:GID`
-> The container will fail to start if permission conflicts exist.
-> Normally this just means 'don't create the directories as root' as a general rule of thumb.
+> The `/app/data` mountpoint must be allowed to read/write by your configured `UID:GID`
 
 | Volume      | Description                                                                                                              | Example                                           |
 |-------------|:-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
@@ -94,11 +82,10 @@ Here’s an example setup:
 | *TV series* | TV library location(s). **This should match Sonarr's configuration exactly.**                                            | `/data/media/shows:/data/media/shows`             |
 | *Music*     | Music library location(s). **This should match Lidarr's configuration exactly.**                                         | `/data/media/music:/data/media/music`             |
 
-#### Optional log file mount
+> [!TIP]
+> Mount `/app/logs` somewhere on the host if you would like to have persistent log files saved.
 
-You can choose whether to mount `/app/logs` somewhere on the host if you would like to have persistent log files saved.
-
-### 3. Port forwarding
+### Port Forwarding
 
 The Torrenting Port
 
@@ -122,21 +109,7 @@ The Webserver Port
 - You can map the web server port to any port on the host or none at all if you connect from within the Docker
   network, such as using a reverse proxy like NGINX.
 
-### 4. Start Client
-
-Start container:
-
-```bash
-docker compose up -d
-```
-
-View logs and follow console:
-
-```bash
-docker compose logs client -f
-```
-
-### 5. Connect the indexer to Prowlarr
+### Prowlarr Setup
 
 This is required if you would like to have PrivateIndexer torrents show up in your torrent search results or have
 Radarr/Sonarr/Lidarr auto-search and pull torrents from the PrivateIndexer swarm.
@@ -155,7 +128,7 @@ automatically based on indexer status and type.
 8. Click `Test` to make sure the connection is working
 9. Click `Save` to add the client
 
-### 6. Connect the download client to Radarr/Sonarr/Lidarr
+### Download Client Setup - Radarr/Sonarr/Lidarr
 
 The API was derived from the qBittorrent API and mocks all of the endpoints used by the *arr suite of apps.
 
@@ -189,11 +162,9 @@ Now you are ready to configure your indexer to use your PrivateIndexer torrent c
 5. For every other indexer in your app, make sure to select a **different** download client, otherwise the indexer may
    try to use `PrivateIndexer` to download non-PrivateIndexer torrents
 
-### 7. Visit the web interface
+### Web Interface
 
-With the provided example `docker-compose.yml` the container listens on port 8080 on all interfaces
-
-Browse to `http://hostname:8080/dashboard` to view the dashboard
+Browse to `http://hostname:8080/dashboard` to view the dashboard.
 
 - Click on torrents to view their status
 - Switch tabs using the menu docked to the bottom of the page to view general torrent info and peer info
